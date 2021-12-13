@@ -53,6 +53,7 @@ object AndroidLibraries {
         const val activityKtx = "1.4.0"
         const val work = "2.7.1"
         const val splash = "1.0.0-alpha02"
+        const val paging = "3.1.0"
     }
 
     const val navigation            = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
@@ -72,6 +73,8 @@ object AndroidLibraries {
     const val constraintLayout      = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val material              = "com.google.android.material:material:${Versions.material}"
     const val work                  = "androidx.work:work-runtime-ktx:${Versions.work}"
+
+    const val paging                = "androidx.paging:paging-runtime:${Versions.paging}"
 }
 
 object TestLibraries {

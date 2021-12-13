@@ -55,6 +55,7 @@ dependencies {
     implementation(AndroidLibraries.viewModel)
     implementation(AndroidLibraries.work)
     implementation(AndroidLibraries.splash)
+    implementation(AndroidLibraries.paging)
 
     implementation(Libraries.koin)
     implementation(Libraries.retrofit)
