@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Trăducător Morse</string>
+    <string name="morse_label">Morse</string>
+    <string name="text_label">Text</string>
+    <string name="copied_to_clipboard_message">Copiat cu success !</string>
+
+    <string name="share_with_title">Transmite prin</string>
+    <string name="share_empty">Mesajul nu poate fi gol !</string>
+    <string name="input_hint">" Introduceți textul aici"</string>
+</resources>
