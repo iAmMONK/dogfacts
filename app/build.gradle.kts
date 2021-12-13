@@ -1,6 +1,7 @@
 plugins {
     id(BuildPlugins.androidApplication)
     kotlin(BuildPlugins.kotlinAndroid)
+    id(BuildPlugins.kapt)
 }
 
 android {
@@ -13,6 +14,16 @@ android {
         versionCode = 22
         versionName = "2.1.0"
         multiDexEnabled = true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true",
+                    "room.expandProjection" to "true"
+                )
+            }
+        }
     }
 
     buildFeatures {
@@ -56,10 +67,14 @@ dependencies {
     implementation(AndroidLibraries.work)
     implementation(AndroidLibraries.splash)
     implementation(AndroidLibraries.paging)
+    implementation(AndroidLibraries.room)
+    implementation(AndroidLibraries.roomKtx)
 
     implementation(Libraries.koin)
     implementation(Libraries.retrofit)
     implementation(Libraries.retrofitGson)
+
+    kapt(AndroidLibraries.roomKapt)
 }
 
 repositories {

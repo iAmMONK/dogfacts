@@ -1,5 +1,8 @@
 package com.dev.monk.dogfacts.di
 
+import android.content.Context
+import androidx.room.Room
+import com.dev.monk.dogfacts.usecase.repositories.local.FactsDb
 import com.dev.monk.dogfacts.usecase.repositories.remote.DogsApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
@@ -15,6 +18,10 @@ val remoteModule = module {
 
 }
 
+val localModule = module {
+    single { getDb(get()).factsDao() }
+}
+
 private val httpClient = OkHttpClient.Builder()
     .callTimeout(30, TimeUnit.SECONDS)
     .build()
@@ -26,3 +33,10 @@ private val buildRetrofit = Retrofit.Builder()
     .build()
 
 private val dogFactsService = buildRetrofit.create(DogsApi::class.java)
+
+private fun getDb(context: Context) =
+    Room.databaseBuilder(
+        context,
+        FactsDb::class.java,
+        "todo-list.db"
+    ).build()

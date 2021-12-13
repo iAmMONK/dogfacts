@@ -12,7 +12,7 @@ class DogfactsApp: Application() {
 
         startKoin {
             androidContext(this@DogfactsApp)
-            modules(listOf(appModule, remoteModule, viewModelsModule))
+            modules(listOf(appModule, remoteModule, localModule, viewModelsModule))
         }
     }
 }

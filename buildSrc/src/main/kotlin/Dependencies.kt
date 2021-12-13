@@ -10,6 +10,7 @@ object BuildPlugins {
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     const val androidApplication = "com.android.application"
     const val kotlinAndroid = "android"
+    const val kapt = "kotlin-kapt"
     const val kotlinAndroidExtensions = "android.extensions"
 
 }
@@ -54,6 +55,7 @@ object AndroidLibraries {
         const val work = "2.7.1"
         const val splash = "1.0.0-alpha02"
         const val paging = "3.1.0"
+        const val room = "2.4.0-alpha03"
     }
 
     const val navigation            = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
@@ -75,6 +77,9 @@ object AndroidLibraries {
     const val work                  = "androidx.work:work-runtime-ktx:${Versions.work}"
 
     const val paging                = "androidx.paging:paging-runtime:${Versions.paging}"
+    const val room                  = "androidx.room:room-runtime:${Versions.room}"
+    const val roomKtx               = "androidx.room:room-ktx:${Versions.room}"
+    const val roomKapt              = "androidx.room:room-compiler:${Versions.room}"
 }
 
 object TestLibraries {

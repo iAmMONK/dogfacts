@@ -16,7 +16,7 @@ val appModule = module {
 
     single { DogsApiRepo(get()) }
 
-    single { FactsManager(get(), get()) }
+    single { FactsManager(get(), get(), get()) }
 
     factory { FactsSource(get()) }
 }
