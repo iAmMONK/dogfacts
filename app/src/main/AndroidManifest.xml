@@ -6,15 +6,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:name="com.dev.monk.dogfacts.MorseApplication"
+        android:icon="@android:drawable/btn_dialog"
+        android:roundIcon="@android:drawable/btn_dialog"
+        android:name="com.dev.monk.dogfacts.DogfactsApp"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.MySplash" >
         <activity
-            android:name="com.dev.monk.dogfacts.MainActivity"
-            android:label="Morse Coder"
+            android:name="com.dev.monk.dogfacts.view.main.MainActivity"
+            android:label="Dog Facts"
             android:exported="true"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize">
@@ -24,9 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_id"/>
+<!--        <meta-data-->
+<!--            android:name="com.google.android.gms.ads.APPLICATION_ID"-->
+<!--            android:value="@string/admob_app_id"/>-->
     </application>
 
 </manifest>

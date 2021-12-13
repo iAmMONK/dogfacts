@@ -45,7 +45,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Libraries.kotlinStdLib)
-    implementation(Libraries.ads)
+//    implementation(Libraries.ads)
     implementation(AndroidLibraries.core)
     implementation(AndroidLibraries.appCompat)
     implementation(AndroidLibraries.activityKtx)
@@ -55,6 +55,10 @@ dependencies {
     implementation(AndroidLibraries.viewModel)
     implementation(AndroidLibraries.work)
     implementation(AndroidLibraries.splash)
+
+    implementation(Libraries.koin)
+    implementation(Libraries.retrofit)
+    implementation(Libraries.retrofitGson)
 }
 
 repositories {

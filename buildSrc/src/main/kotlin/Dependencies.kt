@@ -26,6 +26,8 @@ object Libraries {
         const val ads = "19.7.0"
         const val timber = "5.0.1"
         const val glide = "4.12.0"
+        const val koin = "3.1.4"
+        const val retrofit = "2.9.0"
     }
 
     const val kotlinStdLib     = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
@@ -34,6 +36,9 @@ object Libraries {
     const val timber           = "com.jakewharton.timber:timber:${Versions.timber}"
     const val glide            = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val glideKtx         = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val koin             = "io.insert-koin:koin-android:${Versions.koin}"
+    const val retrofit         = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitGson     = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
 }
 
 object AndroidLibraries {
