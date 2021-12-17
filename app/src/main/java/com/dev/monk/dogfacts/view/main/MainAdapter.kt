@@ -19,8 +19,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
         if (viewType == R.layout.remote_facts_list_item)
             FactsViewHolder(RemoteFactsListItemBinding.bind(parent.inflateChild(R.layout.remote_facts_list_item)))
         else
-            SavedFactsViewHolder(SavedFactsListItemBinding.bind(parent.inflateChild(R.layout.saved_fact_list_item)))
-
+            SavedFactsViewHolder(SavedFactsListItemBinding.bind(parent.inflateChild(R.layout.saved_facts_list_item)))
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.setup()
@@ -29,7 +28,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
     override fun getItemCount() = 2
 
     override fun getItemViewType(position: Int) =
-        if (position == 0) R.layout.remote_facts_list_item else R.layout.saved_fact_list_item
+        if (position == 0) R.layout.remote_facts_list_item else R.layout.saved_facts_list_item
 
     suspend fun submitNewFacts(data: PagingData<Fact>) {
         factsAdapter.submitData(data)
