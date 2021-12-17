@@ -1,12 +1,15 @@
 package com.dev.monk.dogfacts.view.main
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.dev.monk.dogfacts.R
+import com.dev.monk.dogfacts.databinding.FactPageItemBinding
 import com.dev.monk.dogfacts.models.Fact
+import com.dev.monk.dogfacts.utils.ext.inflateChild
 
-class FactsAdapter: PagingDataAdapter<Fact, FactViewHolder>(diffCallback) {
+class FactsAdapter : PagingDataAdapter<Fact, FactsAdapter.FactViewHolder>(diffCallback) {
 
     private companion object {
         val diffCallback = object : DiffUtil.ItemCallback<Fact>() {
@@ -20,11 +23,20 @@ class FactsAdapter: PagingDataAdapter<Fact, FactViewHolder>(diffCallback) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FactViewHolder {
-        return FactViewHolder(View(parent.context))
+        return FactViewHolder(
+            FactPageItemBinding.bind(parent.inflateChild(R.layout.fact_page_item))
+        )
     }
 
     override fun onBindViewHolder(holder: FactViewHolder, position: Int) {
-        // do stuff
+        getItem(position)?.let(holder::showFact)
     }
 
+    class FactViewHolder(private val binding: FactPageItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun showFact(fact: Fact) {
+            binding.factText.text = fact.fact
+        }
+    }
 }

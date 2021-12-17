@@ -24,6 +24,7 @@ class MainActivity: AppCompatActivity() {
         adapter = MainAdapter()
 
         binding.mainPager.adapter = adapter
+        binding.mainPager.isUserInputEnabled = false
 
         TabLayoutMediator(binding.tabLayout, binding.mainPager) { tab, position ->
             tab.text = if (position == 0) "Facts" else "Saved"
@@ -35,7 +36,7 @@ class MainActivity: AppCompatActivity() {
     private fun subscribeUi() {
         lifecycleScope.launch {
             viewModel.dataSource.collectLatest {
-//                adapter?.submitData(it)
+                adapter?.submitNewFacts(it)
             }
         }
     }

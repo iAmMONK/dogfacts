@@ -16,7 +16,7 @@ class FactsSource(private val repo: DogsApiRepo): PagingSource<Int, Fact>() {
             LoadResult.Page(
                 data = result,
                 prevKey = null,
-                nextKey = params.key ?: 0 + 1
+                nextKey = (params.key ?: 0) + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
