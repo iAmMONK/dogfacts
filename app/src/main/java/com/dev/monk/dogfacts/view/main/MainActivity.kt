@@ -1,8 +1,10 @@
 package com.dev.monk.dogfacts.view.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.MainLayoutBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -30,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.mainPager) { tab, position ->
             tab.text = if (position == 0) "Facts" else "Saved"
         }.attach()
+
+        binding.mainPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                binding.heartButton.visibility = if (position == 0) View.VISIBLE else View.GONE
+            }
+        })
 
         binding.heartButton.setOnClickListener {
             viewModel.onHeartClicked()
