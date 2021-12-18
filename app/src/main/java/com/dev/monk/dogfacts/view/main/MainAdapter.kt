@@ -4,13 +4,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.RemoteFactsListItemBinding
 import com.dev.monk.dogfacts.databinding.SavedFactsListItemBinding
 import com.dev.monk.dogfacts.models.Fact
+import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
+class MainAdapter(private val currentFactListener: (Fact?) -> Unit) : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
 
     private val factsAdapter = FactsAdapter()
     private val savedFactsAdapter = SavedFactsAdapter()
@@ -34,7 +36,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
         factsAdapter.submitData(data)
     }
 
-    fun submitSavedFacts(facts: List<Fact>) {
+    fun submitSavedFacts(facts: List<FactEntity>) {
         savedFactsAdapter.submitList(facts)
     }
 
@@ -47,6 +49,11 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
 
         override fun setup() {
             binding.root.adapter = factsAdapter
+            binding.root.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    currentFactListener(factsAdapter.getFact(position))
+                }
+            })
         }
     }
 

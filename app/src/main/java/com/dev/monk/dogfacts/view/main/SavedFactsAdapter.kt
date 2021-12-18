@@ -6,17 +6,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.SavedFactListItemBinding
-import com.dev.monk.dogfacts.models.Fact
+import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
-class SavedFactsAdapter : ListAdapter<Fact, SavedFactsAdapter.SavedFactViewHolder>(diffCallback) {
+class SavedFactsAdapter : ListAdapter<FactEntity, SavedFactsAdapter.SavedFactViewHolder>(diffCallback) {
 
     private companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<Fact>() {
-            override fun areItemsTheSame(oldItem: Fact, newItem: Fact): Boolean =
+        val diffCallback = object : DiffUtil.ItemCallback<FactEntity>() {
+            override fun areItemsTheSame(oldItem: FactEntity, newItem: FactEntity): Boolean =
                 oldItem::class == newItem::class
 
-            override fun areContentsTheSame(oldItem: Fact, newItem: Fact): Boolean =
+            override fun areContentsTheSame(oldItem: FactEntity, newItem: FactEntity): Boolean =
                 oldItem == newItem
 
         }
@@ -32,7 +32,7 @@ class SavedFactsAdapter : ListAdapter<Fact, SavedFactsAdapter.SavedFactViewHolde
     inner class SavedFactViewHolder(private val binding: SavedFactListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(fact: Fact) {
+        fun bind(fact: FactEntity) {
             binding.factText.text = fact.fact
         }
     }
