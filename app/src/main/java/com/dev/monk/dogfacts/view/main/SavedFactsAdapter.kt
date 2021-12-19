@@ -5,35 +5,56 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.monk.dogfacts.R
+import com.dev.monk.dogfacts.databinding.SavedFactEmptyListItemBinding
 import com.dev.monk.dogfacts.databinding.SavedFactListItemBinding
+import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
-class SavedFactsAdapter : ListAdapter<FactEntity, SavedFactsAdapter.SavedFactViewHolder>(diffCallback) {
+class SavedFactsAdapter : ListAdapter<SavedFactsState, RecyclerView.ViewHolder>(diffCallback) {
 
     private companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<FactEntity>() {
-            override fun areItemsTheSame(oldItem: FactEntity, newItem: FactEntity): Boolean =
+        val diffCallback = object : DiffUtil.ItemCallback<SavedFactsState>() {
+            override fun areItemsTheSame(
+                oldItem: SavedFactsState,
+                newItem: SavedFactsState
+            ): Boolean =
                 oldItem::class == newItem::class
 
-            override fun areContentsTheSame(oldItem: FactEntity, newItem: FactEntity): Boolean =
+            override fun areContentsTheSame(
+                oldItem: SavedFactsState,
+                newItem: SavedFactsState
+            ): Boolean =
                 oldItem == newItem
-
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        SavedFactViewHolder(SavedFactListItemBinding.bind(parent.inflateChild(R.layout.saved_fact_list_item)))
+        if (viewType == R.layout.saved_fact_list_item)
+            SavedFactViewHolder(SavedFactListItemBinding.bind(parent.inflateChild(R.layout.saved_fact_list_item)))
+        else
+            EmptyViewHolder(SavedFactEmptyListItemBinding.bind(parent.inflateChild(R.layout.saved_fact_empty_list_item)))
 
-    override fun onBindViewHolder(holder: SavedFactViewHolder, position: Int) {
-        getItem(position)?.let(holder::bind)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is SavedFactViewHolder) {
+            (getItem(position) as? SavedFactsState.Item)?.let(holder::bind)
+        }
     }
+
+    override fun getItemViewType(position: Int) =
+        if (getItem(position) is SavedFactsState.Item)
+            R.layout.saved_fact_list_item
+        else
+            R.layout.saved_fact_empty_list_item
+
+    inner class EmptyViewHolder(private val binding: SavedFactEmptyListItemBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     inner class SavedFactViewHolder(private val binding: SavedFactListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(fact: FactEntity) {
-            binding.factText.text = fact.fact
+        fun bind(state: SavedFactsState.Item) {
+            binding.factText.text = state.item.fact
         }
     }
 }

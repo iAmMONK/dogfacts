@@ -4,17 +4,26 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.dev.monk.dogfacts.models.Fact
+import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.usecase.facts.FactsManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(private val factsManager: FactsManager): ViewModel() {
+class MainActivityViewModel(private val factsManager: FactsManager) : ViewModel() {
 
     val dataSource = factsManager.getPagedFacts()
         .cachedIn(viewModelScope)
 
     val savedFacts = factsManager.getSavedFacts()
+        .map { it.map { fact -> SavedFactsState.Item(fact) } }
+        .map {
+            return@map if (it.isEmpty())
+                listOf<SavedFactsState>(SavedFactsState.EMPTY)
+            else
+                it
+        }
 
     val heartButtonState: StateFlow<Boolean> get() = _heartButtonState
 
