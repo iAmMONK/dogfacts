@@ -42,14 +42,27 @@
         app:srcCompat="@drawable/ic_heart"
         app:tint="@color/colorPrimary" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        app:cardCornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="@id/tab_layout_guide_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tab_layout_guide_line" />
+        app:layout_constraintTop_toTopOf="@id/tab_layout_guide_line"
+        app:strokeColor="#9AAEAEAE"
+        app:strokeWidth="1dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            app:tabBackground="@color/colorOnPrimary"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabIndicatorHeight="48dp"
+            app:tabSelectedTextColor="@color/colorOnPrimary"
+            app:tabTextColor="@color/colorPrimary" />
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
