@@ -1,4 +1,4 @@
-package com.dev.monk.dogfacts.view.main
+package com.dev.monk.dogfacts.view.main.adapters
 
 import android.view.View
 import android.view.ViewGroup

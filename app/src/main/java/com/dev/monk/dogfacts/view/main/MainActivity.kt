@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.MainLayoutBinding
+import com.dev.monk.dogfacts.view.main.adapters.MainAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
