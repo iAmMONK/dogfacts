@@ -8,7 +8,6 @@ import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.SavedFactEmptyListItemBinding
 import com.dev.monk.dogfacts.databinding.SavedFactListItemBinding
 import com.dev.monk.dogfacts.models.SavedFactsState
-import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
 class SavedFactsAdapter : ListAdapter<SavedFactsState, RecyclerView.ViewHolder>(diffCallback) {
@@ -47,7 +46,7 @@ class SavedFactsAdapter : ListAdapter<SavedFactsState, RecyclerView.ViewHolder>(
         else
             R.layout.saved_fact_empty_list_item
 
-    inner class EmptyViewHolder(private val binding: SavedFactEmptyListItemBinding) :
+    inner class EmptyViewHolder(binding: SavedFactEmptyListItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     inner class SavedFactViewHolder(private val binding: SavedFactListItemBinding) :
