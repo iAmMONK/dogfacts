@@ -15,6 +15,8 @@ import com.dev.monk.dogfacts.utils.ext.inflateChild
 class MainAdapter(private val currentFactListener: (Fact?) -> Unit) : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
 
     private val factsAdapter = FactsAdapter()
+    private val factsHeaderAdapter = RemoteStateAdapter { factsAdapter.retry() }
+    private val factsFooterAdapter = RemoteStateAdapter { factsAdapter.retry() }
     private val savedFactsAdapter = SavedFactsAdapter()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
@@ -48,7 +50,10 @@ class MainAdapter(private val currentFactListener: (Fact?) -> Unit) : RecyclerVi
         BaseViewHolder(binding.root) {
 
         override fun setup() {
-            binding.root.adapter = factsAdapter
+            binding.root.adapter = factsAdapter.withLoadStateHeaderAndFooter(
+                factsHeaderAdapter,
+                factsFooterAdapter
+            )
             binding.root.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     currentFactListener(factsAdapter.getFact(position))
