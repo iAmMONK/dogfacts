@@ -2,6 +2,7 @@ package com.dev.monk.dogfacts.view.main.adapters
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -11,8 +12,12 @@ import com.dev.monk.dogfacts.databinding.SavedFactsListItemBinding
 import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.utils.ext.inflateChild
+import kotlinx.coroutines.flow.Flow
 
-class MainAdapter(private val currentFactListener: (Fact?) -> Unit) : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
+class MainAdapter(
+    private val currentFactListener: (Fact?) -> Unit,
+    private val onStateFlowAvailable: (Flow<CombinedLoadStates>) -> Unit
+) : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
 
     private val factsAdapter = FactsAdapter()
     private val factsHeaderAdapter = RemoteStateAdapter { factsAdapter.retry() }
@@ -42,6 +47,11 @@ class MainAdapter(private val currentFactListener: (Fact?) -> Unit) : RecyclerVi
         savedFactsAdapter.submitList(facts)
     }
 
+    fun submitLoadStates(states: CombinedLoadStates) {
+        factsHeaderAdapter.loadState = states.refresh
+        factsFooterAdapter.loadState = states.append
+    }
+
     abstract class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         abstract fun setup()
     }
@@ -54,7 +64,10 @@ class MainAdapter(private val currentFactListener: (Fact?) -> Unit) : RecyclerVi
                 factsHeaderAdapter,
                 factsFooterAdapter
             )
-            binding.root.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+
+            onStateFlowAvailable(factsAdapter.loadStateFlow)
+
+            binding.root.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     currentFactListener(factsAdapter.getFact(position))
                 }

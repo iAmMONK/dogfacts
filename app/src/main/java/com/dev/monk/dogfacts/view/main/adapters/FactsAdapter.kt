@@ -32,7 +32,7 @@ class FactsAdapter : PagingDataAdapter<Fact, FactsAdapter.FactViewHolder>(diffCa
         getItem(position)?.let(holder::showFact)
     }
 
-    fun getFact(position: Int): Fact? = getItem(position)
+    fun getFact(position: Int): Fact? = if (itemCount > 0) getItem(position) else null
 
     class FactViewHolder(private val binding: FactPageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

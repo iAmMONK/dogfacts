@@ -1,6 +1,7 @@
 package com.dev.monk.dogfacts.view.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -25,7 +26,22 @@ class MainActivity : AppCompatActivity() {
         binding = MainLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = MainAdapter { fact -> fact?.let(viewModel::onFactSelected) }
+        adapter = MainAdapter (
+            currentFactListener = { fact -> fact?.let(viewModel::onFactSelected) },
+            onStateFlowAvailable = { stateFlow ->
+                lifecycleScope.launch {
+                    stateFlow.collectLatest { states ->
+                        adapter?.submitLoadStates(states)
+                    }
+                }
+
+                lifecycleScope.launch {
+                    stateFlow.collectLatest {
+                        Log.d("myLogs", it.mediator.toString())
+                    }
+                }
+            }
+        )
 
         binding.mainPager.adapter = adapter
         binding.mainPager.isUserInputEnabled = false
