@@ -12,10 +12,14 @@
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="Theme.MySplash" parent="Theme.SplashScreen">
+    <style name="Theme.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/ic_launcher_background</item>
 <!--        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>-->
         <item name="postSplashScreenTheme">@style/AppTheme</item>
+    </style>
+
+    <style name="TextMediumStyle">
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
 </resources>

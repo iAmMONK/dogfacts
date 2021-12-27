@@ -10,7 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
         android:layout_marginEnd="21dp"
+        android:clipToPadding="false"
         android:orientation="vertical"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,17 +23,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Could not load more facts for you, please check your internet connection and try again."
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/retry_button"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="retry"
-            android:textColor="@color/colorPrimary"
-            app:drawableStartCompat="@drawable/ic_retry"
-            app:drawableTint="@color/colorPrimary" />
+            android:layout_marginTop="10dp"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:contentPaddingBottom="5dp"
+            app:contentPaddingLeft="10dp"
+            app:contentPaddingRight="10dp"
+            app:contentPaddingTop="5dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/retry_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawablePadding="10dp"
+                android:text="retry"
+                android:textAppearance="@style/TextMediumStyle"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="14sp"
+                app:drawableStartCompat="@drawable/ic_retry"
+                app:drawableTint="@color/colorOnPrimary" />
+
+        </com.google.android.material.card.MaterialCardView>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator

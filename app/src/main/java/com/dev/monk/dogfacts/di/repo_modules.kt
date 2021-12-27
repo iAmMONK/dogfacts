@@ -5,9 +5,11 @@ import androidx.room.Room
 import com.dev.monk.dogfacts.usecase.repositories.local.FactsDb
 import com.dev.monk.dogfacts.usecase.repositories.remote.DogsApi
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 private const val URL = "https://dog-facts-api.herokuapp.com/api/v1/resources/"
@@ -23,6 +25,7 @@ val localModule = module {
 }
 
 private val httpClient = OkHttpClient.Builder()
+    .addInterceptor(HttpLoggingInterceptor(Timber::i))
     .callTimeout(30, TimeUnit.SECONDS)
     .build()
 

@@ -2,6 +2,7 @@ package com.dev.monk.dogfacts.view.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.LoadState
 import androidx.paging.cachedIn
 import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.models.SavedFactsState
@@ -26,10 +27,14 @@ class MainActivityViewModel(private val factsManager: FactsManager) : ViewModel(
         }
 
     val heartButtonState: StateFlow<Boolean> get() = _heartButtonState
+    val heartButtonVisibility: StateFlow<Boolean> get() = _heartButtonVisibility
 
     private val _heartButtonState = MutableStateFlow(false)
+    private val _heartButtonVisibility = MutableStateFlow(false)
 
     private var currentFact: Fact? = null
+    private var isSuccessState: Boolean = false
+    private var isOnRemotePage: Boolean = false
 
     fun onFactSelected(fact: Fact) {
         currentFact = fact
@@ -42,6 +47,22 @@ class MainActivityViewModel(private val factsManager: FactsManager) : ViewModel(
                 factsManager.saveFact(it)
                 checkIfFactIsSaved(it)
             }
+        }
+    }
+
+    fun onPageChanged(position: Int) {
+        isOnRemotePage = position == 0
+        emitHeartButtonVisibility()
+    }
+
+    fun onRefreshStateChanged(loadState: LoadState) {
+        isSuccessState = loadState is LoadState.NotLoading
+        emitHeartButtonVisibility()
+    }
+
+    private fun emitHeartButtonVisibility() {
+        viewModelScope.launch {
+            _heartButtonVisibility.emit(isSuccessState && isOnRemotePage)
         }
     }
 

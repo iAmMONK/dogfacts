@@ -29,6 +29,7 @@ object Libraries {
         const val glide = "4.12.0"
         const val koin = "3.1.4"
         const val retrofit = "2.9.0"
+        const val okHttp = "3.9.0"
     }
 
     const val kotlinStdLib     = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
@@ -40,6 +41,7 @@ object Libraries {
     const val koin             = "io.insert-koin:koin-android:${Versions.koin}"
     const val retrofit         = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitGson     = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    const val retrofitLogging  = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
 }
 
 object AndroidLibraries {

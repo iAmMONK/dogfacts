@@ -1,18 +1,20 @@
 package com.dev.monk.dogfacts.view.main
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.MainLayoutBinding
+import com.dev.monk.dogfacts.utils.ext.setVisible
 import com.dev.monk.dogfacts.view.main.adapters.MainAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding = MainLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = MainAdapter (
+        adapter = MainAdapter(
             currentFactListener = { fact -> fact?.let(viewModel::onFactSelected) },
             onStateFlowAvailable = { stateFlow ->
                 lifecycleScope.launch {
@@ -35,14 +37,16 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                lifecycleScope.launch {
-                    stateFlow.collectLatest {
-                        Log.d("myLogs", it.mediator.toString())
-                    }
-                }
+//                lifecycleScope.launch {
+//                    stateFlow
+//                        .map { it.refresh }
+//                        .distinctUntilChanged()
+//                        .collectLatest(viewModel::onRefreshStateChanged)
+//                }
             }
         )
 
+        Timber.i("Hello")
         binding.mainPager.adapter = adapter
         binding.mainPager.isUserInputEnabled = false
 
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                binding.heartButton.visibility = if (position == 0) View.VISIBLE else View.GONE
+                viewModel.onPageChanged(position)
             }
         })
 
@@ -82,6 +86,12 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.savedFacts.collectLatest {
                 adapter?.submitSavedFacts(it)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.heartButtonVisibility.collectLatest {
+                binding.heartButton.setVisible(it)
             }
         }
     }

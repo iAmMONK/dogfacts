@@ -72,7 +72,9 @@ dependencies {
 
     implementation(Libraries.koin)
     implementation(Libraries.retrofit)
+    implementation(Libraries.timber)
     implementation(Libraries.retrofitGson)
+    implementation(Libraries.retrofitLogging)
 
     kapt(AndroidLibraries.roomKapt)
 }
