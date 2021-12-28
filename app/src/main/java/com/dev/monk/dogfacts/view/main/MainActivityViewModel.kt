@@ -32,11 +32,11 @@ class MainActivityViewModel(private val factsManager: FactsManager) : ViewModel(
     private val _heartButtonState = MutableStateFlow(false)
     private val _heartButtonVisibility = MutableStateFlow(false)
 
-    private var currentFact: Fact? = null
+    private var currentFact: String? = null
     private var isSuccessState: Boolean = false
     private var isOnRemotePage: Boolean = false
 
-    fun onFactSelected(fact: Fact) {
+    fun onFactSelected(fact: String) {
         currentFact = fact
         checkIfFactIsSaved(fact)
     }
@@ -66,7 +66,7 @@ class MainActivityViewModel(private val factsManager: FactsManager) : ViewModel(
         }
     }
 
-    private fun checkIfFactIsSaved(fact: Fact) {
+    private fun checkIfFactIsSaved(fact: String) {
         viewModelScope.launch {
             val isSaved = factsManager.checkIfFactIsSaved(fact)
             _heartButtonState.value = isSaved

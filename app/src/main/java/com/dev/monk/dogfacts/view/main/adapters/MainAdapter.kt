@@ -15,7 +15,7 @@ import com.dev.monk.dogfacts.utils.ext.inflateChild
 import kotlinx.coroutines.flow.Flow
 
 class MainAdapter(
-    private val currentFactListener: (Fact?) -> Unit,
+    private val currentFactListener: (String?) -> Unit,
     private val onStateFlowAvailable: (Flow<CombinedLoadStates>) -> Unit
 ) : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
 
@@ -39,7 +39,7 @@ class MainAdapter(
     override fun getItemViewType(position: Int) =
         if (position == 0) R.layout.remote_facts_list_item else R.layout.saved_facts_list_item
 
-    suspend fun submitNewFacts(data: PagingData<Fact>) {
+    suspend fun submitNewFacts(data: PagingData<String>) {
         factsAdapter.submitData(data)
     }
 

@@ -9,14 +9,14 @@ import com.dev.monk.dogfacts.databinding.FactPageItemBinding
 import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
-class FactsAdapter : PagingDataAdapter<Fact, FactsAdapter.FactViewHolder>(diffCallback) {
+class FactsAdapter : PagingDataAdapter<String, FactsAdapter.FactViewHolder>(diffCallback) {
 
     private companion object {
-        val diffCallback = object : DiffUtil.ItemCallback<Fact>() {
-            override fun areItemsTheSame(oldItem: Fact, newItem: Fact): Boolean =
+        val diffCallback = object : DiffUtil.ItemCallback<String>() {
+            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean =
                 oldItem::class == newItem::class
 
-            override fun areContentsTheSame(oldItem: Fact, newItem: Fact): Boolean =
+            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean =
                 oldItem == newItem
 
         }
@@ -32,13 +32,13 @@ class FactsAdapter : PagingDataAdapter<Fact, FactsAdapter.FactViewHolder>(diffCa
         getItem(position)?.let(holder::showFact)
     }
 
-    fun getFact(position: Int): Fact? = if (itemCount > 0) getItem(position) else null
+    fun getFact(position: Int): String? = if (itemCount > 0) getItem(position) else null
 
     class FactViewHolder(private val binding: FactPageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun showFact(fact: Fact) {
-            binding.factText.text = fact.fact
+        fun showFact(fact: String) {
+            binding.factText.text = fact
         }
     }
 }

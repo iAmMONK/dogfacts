@@ -4,11 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.usecase.repositories.local.FactsDao
-import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
-import com.dev.monk.dogfacts.usecase.repositories.remote.DogsApiRepo
 
 class FactsManager(
-    private val repo: DogsApiRepo,
     private val factsSource: FactsSource,
     private val localRepo: FactsDao
 ) {
@@ -23,7 +20,7 @@ class FactsManager(
     ) { factsSource }
         .flow
 
-    suspend fun checkIfFactIsSaved(fact: Fact) = localRepo.isFactSaved(fact.fact)
+    suspend fun checkIfFactIsSaved(fact: String) = localRepo.isFactSaved(fact)
 
-    suspend fun saveFact(fact: Fact) = localRepo.insertOrRemove(fact.fact)
+    suspend fun saveFact(fact: String) = localRepo.insertOrRemove(fact)
 }

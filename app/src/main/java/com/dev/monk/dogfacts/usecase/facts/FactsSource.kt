@@ -6,13 +6,13 @@ import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.usecase.repositories.remote.DogsApiRepo
 import java.lang.Exception
 
-class FactsSource(private val repo: DogsApiRepo): PagingSource<Int, Fact>() {
+class FactsSource(private val repo: DogsApiRepo): PagingSource<Int, String>() {
 
-    override fun getRefreshKey(state: PagingState<Int, Fact>): Int = 0
+    override fun getRefreshKey(state: PagingState<Int, String>): Int = 0
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Fact> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, String> {
         return try {
-            val result = repo.getDogFacts()
+            val result = repo.getDogFacts().facts
             LoadResult.Page(
                 data = result,
                 prevKey = null,

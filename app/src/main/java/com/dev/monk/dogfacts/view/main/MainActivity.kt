@@ -37,16 +37,15 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-//                lifecycleScope.launch {
-//                    stateFlow
-//                        .map { it.refresh }
-//                        .distinctUntilChanged()
-//                        .collectLatest(viewModel::onRefreshStateChanged)
-//                }
+                lifecycleScope.launch {
+                    stateFlow
+                        .map { it.refresh }
+                        .distinctUntilChanged()
+                        .collectLatest(viewModel::onRefreshStateChanged)
+                }
             }
         )
 
-        Timber.i("Hello")
         binding.mainPager.adapter = adapter
         binding.mainPager.isUserInputEnabled = false
 
