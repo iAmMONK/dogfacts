@@ -17,7 +17,6 @@ private const val URL = "https://dog-api.kinduff.com/api/"
 val remoteModule = module {
 
     single { dogFactsService }
-
 }
 
 val localModule = module {
@@ -25,9 +24,11 @@ val localModule = module {
 }
 
 private val httpClient = OkHttpClient.Builder()
-    .addInterceptor(HttpLoggingInterceptor(Timber::i).apply {
-        level = HttpLoggingInterceptor.Level.BODY
-    })
+    .addInterceptor(
+        HttpLoggingInterceptor(Timber::i).apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+    )
     .callTimeout(30, TimeUnit.SECONDS)
     .build()
 

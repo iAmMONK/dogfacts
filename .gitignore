@@ -87,3 +87,7 @@ lint/tmp/
 
 # macOs
 .DS_Store
+
+#gradlew
+gradlew
+gradlew.bat

@@ -2,7 +2,6 @@ package com.dev.monk.dogfacts.usecase.facts
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.usecase.repositories.local.FactsDao
 
 class FactsManager(

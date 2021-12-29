@@ -26,9 +26,8 @@ interface FactsDao {
     }
 
     @Query("SELECT EXISTS(SELECT * FROM saved_facts WHERE fact = :factText)")
-    suspend fun isFactSaved(factText: String) : Boolean
+    suspend fun isFactSaved(factText: String): Boolean
 
     @Delete
     suspend fun delete(fact: FactEntity)
-
 }

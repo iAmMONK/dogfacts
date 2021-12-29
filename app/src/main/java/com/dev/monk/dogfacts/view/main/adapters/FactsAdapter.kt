@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.FactPageItemBinding
-import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
 class FactsAdapter : PagingDataAdapter<String, FactsAdapter.FactViewHolder>(diffCallback) {
@@ -18,7 +17,6 @@ class FactsAdapter : PagingDataAdapter<String, FactsAdapter.FactViewHolder>(diff
 
             override fun areContentsTheSame(oldItem: String, newItem: String): Boolean =
                 oldItem == newItem
-
         }
     }
 

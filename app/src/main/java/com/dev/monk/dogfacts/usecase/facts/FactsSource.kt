@@ -2,11 +2,10 @@ package com.dev.monk.dogfacts.usecase.facts
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.usecase.repositories.remote.DogsApiRepo
 import java.lang.Exception
 
-class FactsSource(private val repo: DogsApiRepo): PagingSource<Int, String>() {
+class FactsSource(private val repo: DogsApiRepo) : PagingSource<Int, String>() {
 
     override fun getRefreshKey(state: PagingState<Int, String>): Int = 0
 
@@ -22,5 +21,4 @@ class FactsSource(private val repo: DogsApiRepo): PagingSource<Int, String>() {
             LoadResult.Error(e)
         }
     }
-
 }

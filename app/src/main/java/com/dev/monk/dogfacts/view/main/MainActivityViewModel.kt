@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.paging.cachedIn
-import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.usecase.facts.FactsManager
 import kotlinx.coroutines.flow.MutableStateFlow

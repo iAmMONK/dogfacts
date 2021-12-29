@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -99,5 +98,4 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         adapter = null
     }
-
 }

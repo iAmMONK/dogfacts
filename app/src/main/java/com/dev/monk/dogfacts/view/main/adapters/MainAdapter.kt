@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.RemoteFactsListItemBinding
 import com.dev.monk.dogfacts.databinding.SavedFactsListItemBinding
-import com.dev.monk.dogfacts.models.Fact
 import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 import kotlinx.coroutines.flow.Flow
