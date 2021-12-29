@@ -11,6 +11,7 @@ import com.dev.monk.dogfacts.databinding.RemoteFactsListItemBinding
 import com.dev.monk.dogfacts.databinding.SavedFactsListItemBinding
 import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.utils.ext.inflateChild
+import com.dev.monk.dogfacts.view.main.StackPageTransformer
 import kotlinx.coroutines.flow.Flow
 
 class MainAdapter(
@@ -63,6 +64,8 @@ class MainAdapter(
                 factsHeaderAdapter,
                 factsFooterAdapter
             )
+            binding.root.offscreenPageLimit = 5
+            binding.root.setPageTransformer(StackPageTransformer(5))
 
             onStateFlowAvailable(factsAdapter.loadStateFlow)
 
