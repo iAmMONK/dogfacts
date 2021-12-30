@@ -22,4 +22,8 @@
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
+    <style name="TextBoldStyle">
+        <item name="android:fontFamily">sans-serif-bold</item>
+    </style>
+
 </resources>

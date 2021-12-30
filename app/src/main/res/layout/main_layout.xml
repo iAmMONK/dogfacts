@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorOnPrimary">
+    android:background="@color/background">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/information"
@@ -57,7 +57,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            app:tabBackground="@color/colorOnPrimary"
+            app:tabBackground="@color/background"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="48dp"
             app:tabSelectedTextColor="@color/colorOnPrimary"

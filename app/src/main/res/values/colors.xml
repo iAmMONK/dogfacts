@@ -8,6 +8,8 @@
     <color name="colorOnSurface">#D9FFFFFF</color>
     <color name="colorOnColorless">#121212</color>
 
+    <color name="background">@color/colorOnPrimary</color>
+
     <color name="ic_launcher_background">#181A18</color>
     <color name="ic_launcher_foreground">@color/colorPrimary</color>
 </resources>

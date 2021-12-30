@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.MainLayoutBinding
 import com.dev.monk.dogfacts.utils.ext.setVisible
+import com.dev.monk.dogfacts.view.about.About
 import com.dev.monk.dogfacts.view.main.adapters.MainAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.collectLatest
@@ -60,6 +61,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.heartButton.setOnClickListener {
             viewModel.onHeartClicked()
+        }
+
+        binding.information.setOnClickListener {
+            About()
+                .show(supportFragmentManager, About.TAG)
         }
 
         subscribeUi()

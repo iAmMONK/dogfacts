@@ -27,6 +27,7 @@
             android:textColor="@color/colorPrimary" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/retry_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -40,7 +41,6 @@
             app:contentPaddingTop="5dp">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/retry_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
