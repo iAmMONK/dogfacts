@@ -1,10 +1,3 @@
 <resources>
-    <string name="app_name">Morse Translator</string>
-    <string name="morse_label">Morse</string>
-    <string name="text_label">Text</string>
-    <string name="copied_to_clipboard_message">Copied !</string>
-
-    <string name="share_with_title">Send using</string>
-    <string name="share_empty">Message can not be empty !</string>
-    <string name="input_hint">Start typing</string>
+    <string name="app_name">Dog Facts</string>
 </resources>
