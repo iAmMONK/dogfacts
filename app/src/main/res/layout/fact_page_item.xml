@@ -17,7 +17,9 @@
             android:layout_marginStart="21dp"
             android:layout_marginTop="21dp"
             android:text="Did you know?"
-            android:textSize="24sp"
+            android:textSize="28sp"
+            android:textColor="@color/colorOnPrimary"
+            android:textAppearance="@style/TextMediumStyle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +29,8 @@
             android:layout_height="match_parent"
             android:layout_marginStart="21dp"
             android:layout_marginEnd="21dp"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="14sp"
             android:gravity="center" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
