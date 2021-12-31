@@ -47,7 +47,7 @@
                 android:layout_marginEnd="21dp"
                 android:text="App created by dog lovers for dog lovers"
                 android:textAlignment="center"
-                android:textColor="@color/colorOnPrimary"
+                android:textColor="@color/colorOnColorless"
                 android:textSize="14sp" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -60,7 +60,7 @@
                 android:autoLink="email"
                 android:paddingBottom="100dp"
                 android:textAlignment="center"
-                android:textColor="@color/colorOnSurface"
+                android:textColor="@color/colorOnColorless"
                 android:textColorLink="@color/colorPrimary"
                 android:textSize="14sp" />
 
