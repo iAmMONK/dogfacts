@@ -75,11 +75,13 @@ dependencies {
     implementation(Libraries.timber)
     implementation(Libraries.retrofitGson)
     implementation(Libraries.retrofitLogging)
+    implementation(Libraries.htmlSpanner)
 
     kapt(AndroidLibraries.roomKapt)
 }
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://jitpack.io") }
     google()
 }

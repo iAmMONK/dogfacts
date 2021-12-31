@@ -1,47 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <View
+        android:layout_width="24dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="21dp"
+        android:background="@drawable/bottom_sheet_dialog_controller"
+        android:layout_gravity="center" />
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <View
-            android:layout_width="24dp"
-            android:layout_height="4dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="21dp"
-            android:background="@drawable/bottom_sheet_dialog_controller" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:layout_gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:textAppearance="@style/TextBoldStyle"
-            android:textSize="18sp" />
-
-        <com.google.android.material.textview.MaterialTextView
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="21dp"
-            android:layout_marginEnd="21dp"
-            android:layout_marginTop="14dp"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            android:textColor="@color/colorOnPrimary"
-            android:text="App created by dog lovers for dog lovers" />
+            android:orientation="vertical">
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_launcher_foreground"
+                app:tint="@color/colorPrimary" />
 
-</androidx.core.widget.NestedScrollView>
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextBoldStyle"
+                android:textColor="@color/colorPrimary"
+                android:textSize="28sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="21dp"
+                android:text="App created by dog lovers for dog lovers"
+                android:textAlignment="center"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="14sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/data_security"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="21dp"
+                android:autoLink="email"
+                android:paddingBottom="100dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorOnSurface"
+                android:textColorLink="@color/colorPrimary"
+                android:textSize="14sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
