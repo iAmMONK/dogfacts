@@ -23,7 +23,7 @@ class RemoteFactsAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FactViewHolder {
         return FactViewHolder(
-            FactPageItemBinding.bind(parent.inflateChild(R.layout.fact_page_item))
+            FactPageItemBinding.bind(parent.inflateChild(R.layout.remote_fact_list_item))
         )
     }
 
