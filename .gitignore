@@ -86,6 +86,7 @@ lint/tmp/
 # lint/reports/
 
 # macOs
+*.DS_Store
 .DS_Store
 
 #gradlew
