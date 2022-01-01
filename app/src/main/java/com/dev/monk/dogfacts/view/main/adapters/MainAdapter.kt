@@ -14,7 +14,7 @@ import com.dev.monk.dogfacts.utils.ext.inflateChild
 import kotlinx.coroutines.flow.Flow
 
 class MainAdapter(
-    private val currentFactListener: (String?) -> Unit,
+    private val currentFactListener: (String?, Int) -> Unit,
     private val onStateFlowAvailable: (Flow<CombinedLoadStates>) -> Unit
 ) : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
 
@@ -70,7 +70,7 @@ class MainAdapter(
 
             binding.root.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
-                    currentFactListener(factsAdapter.getFact(position))
+                    currentFactListener(factsAdapter.getFact(position), position)
                 }
             })
         }

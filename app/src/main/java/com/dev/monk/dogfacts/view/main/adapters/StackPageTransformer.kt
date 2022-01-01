@@ -17,7 +17,6 @@ class StackPageTransformer(private val offscreenPageLimit: Int) : ViewPager2.Pag
 
         private const val ALPHA_FACTOR = .3f
         private const val DEFAULT_ALPHA = 1f
-
     }
 
     override fun transformPage(page: View, position: Float) {

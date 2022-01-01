@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.text.HtmlCompat
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.AboutDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

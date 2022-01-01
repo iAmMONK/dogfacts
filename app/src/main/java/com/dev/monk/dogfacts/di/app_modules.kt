@@ -1,15 +1,17 @@
 package com.dev.monk.dogfacts.di
 
+import com.dev.monk.dogfacts.usecase.ads.AdsManager
 import com.dev.monk.dogfacts.usecase.facts.FactsManager
 import com.dev.monk.dogfacts.usecase.facts.FactsSource
 import com.dev.monk.dogfacts.usecase.repositories.remote.DogsApiRepo
 import com.dev.monk.dogfacts.view.main.MainActivityViewModel
+import com.google.android.gms.ads.AdRequest
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelsModule = module {
 
-    viewModel { MainActivityViewModel(get()) }
+    viewModel { MainActivityViewModel(get(), get()) }
 }
 
 val appModule = module {
@@ -19,4 +21,8 @@ val appModule = module {
     single { FactsManager(get(), get()) }
 
     factory { FactsSource(get()) }
+
+    single { AdsManager(get(), adRequest) }
 }
+
+private val adRequest = AdRequest.Builder().build()

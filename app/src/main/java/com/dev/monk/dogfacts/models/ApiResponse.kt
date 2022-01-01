@@ -1,3 +1,7 @@
 package com.dev.monk.dogfacts.models
 
-class ApiResponse(val facts: List<String>)
+import com.google.gson.annotations.SerializedName
+
+class ApiResponse(
+    @SerializedName("facts") val facts: List<String>
+)

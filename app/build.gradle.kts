@@ -37,10 +37,10 @@ android {
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
-//        forEach { build ->
-//            build.resValue("string", "admob_app_id", project.property("AdMobAppId") as String)
-//            build.resValue("string", "admob_ad_unit_id", project.property("AdMobAdUnitId") as String)
-//        }
+        forEach { build ->
+            build.resValue("string", "admob_app_id", project.property("AdMobAppId") as String)
+            build.resValue("string", "admob_ad_unit_id", project.property("AdMobAdUnitId") as String)
+        }
     }
 
     compileOptions {
@@ -56,7 +56,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Libraries.kotlinStdLib)
-//    implementation(Libraries.ads)
+    implementation(Libraries.ads)
     implementation(AndroidLibraries.core)
     implementation(AndroidLibraries.appCompat)
     implementation(AndroidLibraries.activityKtx)

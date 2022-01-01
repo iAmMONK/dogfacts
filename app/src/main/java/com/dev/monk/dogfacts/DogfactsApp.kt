@@ -2,6 +2,7 @@ package com.dev.monk.dogfacts
 
 import android.app.Application
 import com.dev.monk.dogfacts.di.*
+import com.google.android.gms.ads.MobileAds
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -17,5 +18,6 @@ class DogfactsApp : Application() {
         }
 
         Timber.plant(Timber.DebugTree())
+        MobileAds.initialize(this)
     }
 }

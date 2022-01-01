@@ -29,7 +29,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter = MainAdapter(
-            currentFactListener = { fact -> fact?.let(viewModel::onFactSelected) },
+            currentFactListener = { fact, position ->
+                fact?.let(viewModel::onFactSelected)
+                viewModel.onFactsPageChanged(position)
+            },
             onStateFlowAvailable = { stateFlow ->
                 lifecycleScope.launch {
                     stateFlow.collectLatest { states ->
@@ -96,6 +99,12 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.heartButtonVisibility.collectLatest {
                 binding.heartButton.setVisible(it)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.interAds.collectLatest { ad ->
+                ad?.show(this@MainActivity)
             }
         }
     }

@@ -5,13 +5,19 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.paging.cachedIn
 import com.dev.monk.dogfacts.models.SavedFactsState
+import com.dev.monk.dogfacts.usecase.ads.AdsManager
 import com.dev.monk.dogfacts.usecase.facts.FactsManager
+import com.google.android.gms.ads.interstitial.InterstitialAd
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(private val factsManager: FactsManager) : ViewModel() {
+class MainActivityViewModel(
+    private val factsManager: FactsManager,
+    private val adsManager: AdsManager
+) : ViewModel() {
 
     val dataSource = factsManager.getPagedFacts()
         .cachedIn(viewModelScope)
@@ -27,6 +33,7 @@ class MainActivityViewModel(private val factsManager: FactsManager) : ViewModel(
 
     val heartButtonState: StateFlow<Boolean> get() = _heartButtonState
     val heartButtonVisibility: StateFlow<Boolean> get() = _heartButtonVisibility
+    val interAds: SharedFlow<InterstitialAd?> get() = adsManager.interAdFlow
 
     private val _heartButtonState = MutableStateFlow(false)
     private val _heartButtonVisibility = MutableStateFlow(false)
@@ -52,6 +59,10 @@ class MainActivityViewModel(private val factsManager: FactsManager) : ViewModel(
     fun onPageChanged(position: Int) {
         isOnRemotePage = position == 0
         emitHeartButtonVisibility()
+    }
+
+    fun onFactsPageChanged(position: Int) {
+        adsManager.onFactsPageChanged(position)
     }
 
     fun onRefreshStateChanged(loadState: LoadState) {
