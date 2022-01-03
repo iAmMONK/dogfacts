@@ -11,7 +11,7 @@ android {
         applicationId = "com.dev.monk.dogfacts"
         minSdk = AndroidSdk.min
         targetSdk = AndroidSdk.target
-        versionCode = 3
+        versionCode = 4
         versionName = "1.0.0"
         multiDexEnabled = true
 
@@ -31,10 +31,21 @@ android {
         dataBinding = true
     }
 
+    signingConfigs {
+        create("testRelease") {
+            storeFile = file("testKeystore")
+            storePassword = "testPassword"
+            keyAlias = "testAlias"
+            keyPassword = "testPassword"
+        }
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
+
+//            signingConfig = signingConfigs.findByName("testRelease")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         forEach { build ->
