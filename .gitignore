@@ -92,3 +92,4 @@ lint/tmp/
 #gradlew
 gradlew
 gradlew.bat
+gradle.properties

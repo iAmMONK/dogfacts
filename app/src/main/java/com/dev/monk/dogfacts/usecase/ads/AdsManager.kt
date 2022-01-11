@@ -6,7 +6,8 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 class AdsManager(
@@ -15,7 +16,7 @@ class AdsManager(
 ) {
 
     companion object {
-        private const val PAGE_TRESHOLD = 12
+        private const val PAGE_THRESHOLD = 12
     }
 
     private val _interAdFlow: MutableSharedFlow<InterstitialAd?> = MutableSharedFlow(replay = 1)
@@ -23,7 +24,7 @@ class AdsManager(
     val interAdFlow: SharedFlow<InterstitialAd?> get() = _interAdFlow
 
     fun onFactsPageChanged(position: Int) {
-        if (position == 0 || position % PAGE_TRESHOLD != 0) return
+        if (position == 0 || position % PAGE_THRESHOLD != 0) return
 
         InterstitialAd.load(
             context, context.getString(R.string.admob_ad_unit_id), adRequest,

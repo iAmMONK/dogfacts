@@ -10,6 +10,7 @@ import com.dev.monk.dogfacts.utils.ext.setVisible
 import com.dev.monk.dogfacts.view.about.About
 import com.dev.monk.dogfacts.view.main.adapters.MainAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -103,8 +104,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         lifecycleScope.launch {
-            viewModel.interAds.collectLatest { ad ->
+            viewModel.interAds.collect { ad ->
                 ad?.show(this@MainActivity)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.reviewInfo.collect {
+                it.first.launchReviewFlow(this@MainActivity, it.second)
             }
         }
     }

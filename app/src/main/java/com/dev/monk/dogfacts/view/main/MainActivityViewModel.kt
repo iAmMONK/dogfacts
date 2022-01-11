@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.usecase.ads.AdsManager
 import com.dev.monk.dogfacts.usecase.facts.FactsManager
+import com.dev.monk.dogfacts.usecase.reviews.InAppReviews
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -16,7 +17,8 @@ import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
     private val factsManager: FactsManager,
-    private val adsManager: AdsManager
+    private val adsManager: AdsManager,
+    private val inAppReviews: InAppReviews
 ) : ViewModel() {
 
     val dataSource = factsManager.getPagedFacts()
@@ -31,6 +33,7 @@ class MainActivityViewModel(
                 it
         }
 
+    val reviewInfo get() = inAppReviews.reviewInfo
     val heartButtonState: StateFlow<Boolean> get() = _heartButtonState
     val heartButtonVisibility: StateFlow<Boolean> get() = _heartButtonVisibility
     val interAds: SharedFlow<InterstitialAd?> get() = adsManager.interAdFlow
@@ -63,6 +66,7 @@ class MainActivityViewModel(
 
     fun onFactsPageChanged(position: Int) {
         adsManager.onFactsPageChanged(position)
+        inAppReviews.someday(position)
     }
 
     fun onRefreshStateChanged(loadState: LoadState) {

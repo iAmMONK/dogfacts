@@ -63,6 +63,8 @@ object AndroidLibraries {
         const val splash = "1.0.0-alpha02"
         const val paging = "3.1.0"
         const val room = "2.4.0-alpha03"
+        const val playCore = "1.10.2"
+        const val playCoreKtx = "1.8.1"
     }
 
     const val navigation            = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
@@ -87,6 +89,9 @@ object AndroidLibraries {
     const val room                  = "androidx.room:room-runtime:${Versions.room}"
     const val roomKtx               = "androidx.room:room-ktx:${Versions.room}"
     const val roomKapt              = "androidx.room:room-compiler:${Versions.room}"
+
+    const val playCore              = "com.google.android.play:core:${Versions.playCore}"
+    const val playCoreKtx           = "com.google.android.play:core-ktx:${Versions.playCoreKtx}"
 }
 
 object TestLibraries {

@@ -45,7 +45,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
 
-//            signingConfig = signingConfigs.findByName("testRelease")
+            signingConfig = signingConfigs.findByName("testRelease")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         forEach { build ->
@@ -80,6 +80,8 @@ dependencies {
     implementation(AndroidLibraries.paging)
     implementation(AndroidLibraries.room)
     implementation(AndroidLibraries.roomKtx)
+    implementation(AndroidLibraries.playCore)
+    implementation(AndroidLibraries.playCoreKtx)
 
     implementation(Libraries.koin)
     implementation(Libraries.retrofit)
