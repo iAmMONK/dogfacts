@@ -15,13 +15,14 @@ import kotlinx.coroutines.flow.Flow
 
 class MainAdapter(
     private val currentFactListener: (String?, Int) -> Unit,
-    private val onStateFlowAvailable: (Flow<CombinedLoadStates>) -> Unit
+    private val onStateFlowAvailable: (Flow<CombinedLoadStates>) -> Unit,
+    private val onItemLongClick: (String) -> Unit
 ) : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
 
-    private val factsAdapter = RemoteFactsAdapter()
+    private val factsAdapter = RemoteFactsAdapter { onItemLongClick(it) }
     private val factsHeaderAdapter = RemoteStateAdapter { factsAdapter.retry() }
     private val factsFooterAdapter = RemoteStateAdapter { factsAdapter.retry() }
-    private val savedFactsAdapter = SavedFactsAdapter()
+    private val savedFactsAdapter = SavedFactsAdapter { onItemLongClick(it) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
         if (viewType == R.layout.remote_facts_list_item)

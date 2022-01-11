@@ -10,7 +10,9 @@ import com.dev.monk.dogfacts.databinding.SavedFactListItemBinding
 import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
-class SavedFactsAdapter : ListAdapter<SavedFactsState, RecyclerView.ViewHolder>(diffCallback) {
+class SavedFactsAdapter(
+    private val onLongClick: (String) -> Unit
+) : ListAdapter<SavedFactsState, RecyclerView.ViewHolder>(diffCallback) {
 
     private companion object {
         val diffCallback = object : DiffUtil.ItemCallback<SavedFactsState>() {
@@ -54,6 +56,11 @@ class SavedFactsAdapter : ListAdapter<SavedFactsState, RecyclerView.ViewHolder>(
 
         fun bind(state: SavedFactsState.Item) {
             binding.factText.text = state.item.fact
+
+            binding.root.setOnLongClickListener {
+                onLongClick(state.item.fact)
+                true
+            }
         }
     }
 }

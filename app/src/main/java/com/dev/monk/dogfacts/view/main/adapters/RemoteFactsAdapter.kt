@@ -8,7 +8,9 @@ import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.RemoteFactListItemBinding
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
-class RemoteFactsAdapter :
+class RemoteFactsAdapter(
+    private val onItemLongClick: (String) -> Unit
+) :
     PagingDataAdapter<String, RemoteFactsAdapter.FactViewHolder>(diffCallback) {
 
     private companion object {
@@ -34,11 +36,16 @@ class RemoteFactsAdapter :
     fun getFact(position: Int): String? =
         if (itemCount > 0 && itemCount > position) getItem(position) else null
 
-    class FactViewHolder(private val binding: RemoteFactListItemBinding) :
+    inner class FactViewHolder(private val binding: RemoteFactListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun showFact(fact: String) {
             binding.factText.text = fact
+
+            binding.root.setOnLongClickListener {
+                onItemLongClick(fact)
+                true
+            }
         }
     }
 }

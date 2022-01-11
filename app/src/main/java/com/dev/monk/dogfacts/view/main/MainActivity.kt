@@ -1,5 +1,8 @@
 package com.dev.monk.dogfacts.view.main
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +19,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,6 +51,12 @@ class MainActivity : AppCompatActivity() {
                         .distinctUntilChanged()
                         .collectLatest(viewModel::onRefreshStateChanged)
                 }
+            },
+            onItemLongClick = {
+                val clipboard: ClipboardManager =
+                    getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("DogFact", it)
+                clipboard.setPrimaryClip(clip)
             }
         )
 
