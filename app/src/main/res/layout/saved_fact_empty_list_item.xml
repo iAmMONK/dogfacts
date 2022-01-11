@@ -7,6 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="You have not saved any facts yet." />
+        android:text="@string/saved_facts_empty_msg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

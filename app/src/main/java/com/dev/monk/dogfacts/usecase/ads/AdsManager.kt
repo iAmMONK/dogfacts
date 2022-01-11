@@ -16,7 +16,7 @@ class AdsManager(
 ) {
 
     companion object {
-        private const val PAGE_THRESHOLD = 12
+        private const val PAGE_THRESHOLD = 20
     }
 
     private val _interAdFlow: MutableSharedFlow<InterstitialAd?> = MutableSharedFlow(replay = 1)

@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
@@ -55,8 +56,14 @@ class MainActivity : AppCompatActivity() {
             onItemLongClick = {
                 val clipboard: ClipboardManager =
                     getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                val clip = ClipData.newPlainText("DogFact", it)
-                clipboard.setPrimaryClip(clip)
+                clipboard.setPrimaryClip(
+                    ClipData.newPlainText(
+                        getString(R.string.clipboard_label),
+                        it
+                    )
+                )
+                Toast.makeText(applicationContext, R.string.clipboard_msg, Toast.LENGTH_SHORT)
+                    .show()
             }
         )
 
@@ -64,7 +71,8 @@ class MainActivity : AppCompatActivity() {
         binding.mainPager.isUserInputEnabled = false
 
         TabLayoutMediator(binding.tabLayout, binding.mainPager) { tab, position ->
-            tab.text = if (position == 0) "Facts" else "Saved"
+            tab.text =
+                if (position == 0) getString(R.string.tab_remote_facts) else getString(R.string.tab_saved_facts)
         }.attach()
 
         binding.mainPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

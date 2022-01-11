@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="21dp"
             android:layout_marginTop="21dp"
-            android:text="Did you know?"
+            android:text="@string/remote_fact_header"
             android:textSize="28sp"
             android:textColor="@color/colorOnPrimary"
             android:textAppearance="@style/TextMediumStyle"

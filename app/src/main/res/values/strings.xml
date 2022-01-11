@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Dog Facts</string>
+    <string name="tab_remote_facts">Facts</string>
+    <string name="tab_saved_facts">Saved</string>
+    <string name="remote_fact_header">Did you know?</string>
+    <string name="clipboard_label">Dog facts</string>
+    <string name="app_description">App created by dog lovers for dog lovers.</string>
+    <string name="remote_error_msg">Could not load more facts for you, please check your internet connection and try again.</string>
+    <string name="remote_error_retry_button">retry</string>
+    <string name="saved_facts_empty_msg">You have not saved any facts yet.</string>
+    <string name="clipboard_msg">Copied to clipboard!</string>
 </resources>

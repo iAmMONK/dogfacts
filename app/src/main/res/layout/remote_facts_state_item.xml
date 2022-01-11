@@ -22,7 +22,7 @@
             android:id="@+id/error_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Could not load more facts for you, please check your internet connection and try again."
+            android:text="@string/remote_error_msg"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary" />
 
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawablePadding="10dp"
-                android:text="retry"
+                android:text="@string/remote_error_retry_button"
                 android:textAppearance="@style/TextMediumStyle"
                 android:textColor="@color/colorOnPrimary"
                 android:textSize="14sp"
