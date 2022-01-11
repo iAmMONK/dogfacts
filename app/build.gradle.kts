@@ -11,8 +11,8 @@ android {
         applicationId = "com.dev.monk.dogfacts"
         minSdk = AndroidSdk.min
         targetSdk = AndroidSdk.target
-        versionCode = 4
-        versionName = "1.0.0"
+        versionCode = 5
+        versionName = "1.0.1"
         multiDexEnabled = true
 
         javaCompileOptions {
