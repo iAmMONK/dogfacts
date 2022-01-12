@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 
 fun ViewGroup.inflateChild(@LayoutRes resId: Int): View {
     return LayoutInflater.from(context)
@@ -13,3 +14,6 @@ fun ViewGroup.inflateChild(@LayoutRes resId: Int): View {
 fun View.setVisible(visible: Boolean, invisMode: Int = View.GONE) {
     visibility = if (visible) View.VISIBLE else invisMode
 }
+
+fun View.getString(@StringRes resId: Int): String =
+    context.getString(resId)

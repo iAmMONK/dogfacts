@@ -4,25 +4,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.paging.CombinedLoadStates
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.RemoteFactsListItemBinding
 import com.dev.monk.dogfacts.databinding.SavedFactsListItemBinding
 import com.dev.monk.dogfacts.models.SavedFactsState
+import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 import kotlinx.coroutines.flow.Flow
 
 class MainAdapter(
     private val currentFactListener: (String?, Int) -> Unit,
     private val onStateFlowAvailable: (Flow<CombinedLoadStates>) -> Unit,
-    private val onItemLongClick: (String) -> Unit
+    private val onItemLongClick: (String) -> Unit,
+    private val onSavedItemSwiped: (FactEntity) -> Unit
 ) : RecyclerView.Adapter<MainAdapter.BaseViewHolder>() {
 
     private val factsAdapter = RemoteFactsAdapter { onItemLongClick(it) }
     private val factsHeaderAdapter = RemoteStateAdapter { factsAdapter.retry() }
     private val factsFooterAdapter = RemoteStateAdapter { factsAdapter.retry() }
     private val savedFactsAdapter = SavedFactsAdapter { onItemLongClick(it) }
+    private val swipeCallback = SwipeCallback { onSavedItemSwiped(it) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
         if (viewType == R.layout.remote_facts_list_item)
@@ -82,6 +86,8 @@ class MainAdapter(
 
         override fun setup() {
             binding.root.adapter = savedFactsAdapter
+            ItemTouchHelper(swipeCallback)
+                .attachToRecyclerView(binding.root)
         }
     }
 }

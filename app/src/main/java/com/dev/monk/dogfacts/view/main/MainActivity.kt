@@ -21,7 +21,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<MainActivityViewModel>()
@@ -64,7 +63,8 @@ class MainActivity : AppCompatActivity() {
                 )
                 Toast.makeText(applicationContext, R.string.clipboard_msg, Toast.LENGTH_SHORT)
                     .show()
-            }
+            },
+            onSavedItemSwiped = viewModel::onSavedFactSwiped
         )
 
         binding.mainPager.adapter = adapter

@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import com.dev.monk.dogfacts.models.SavedFactsState
 import com.dev.monk.dogfacts.usecase.ads.AdsManager
 import com.dev.monk.dogfacts.usecase.facts.FactsManager
+import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.usecase.reviews.InAppReviews
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -72,6 +73,12 @@ class MainActivityViewModel(
     fun onRefreshStateChanged(loadState: LoadState) {
         isSuccessState = loadState is LoadState.NotLoading
         emitHeartButtonVisibility()
+    }
+
+    fun onSavedFactSwiped(factEntity: FactEntity) {
+        viewModelScope.launch {
+            factsManager.deleteSavedFact(factEntity)
+        }
     }
 
     private fun emitHeartButtonVisibility() {

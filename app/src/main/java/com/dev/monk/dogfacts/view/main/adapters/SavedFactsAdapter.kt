@@ -8,6 +8,7 @@ import com.dev.monk.dogfacts.R
 import com.dev.monk.dogfacts.databinding.SavedFactEmptyListItemBinding
 import com.dev.monk.dogfacts.databinding.SavedFactListItemBinding
 import com.dev.monk.dogfacts.models.SavedFactsState
+import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.utils.ext.inflateChild
 
 class SavedFactsAdapter(
@@ -54,7 +55,10 @@ class SavedFactsAdapter(
     inner class SavedFactViewHolder(private val binding: SavedFactListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        var fact: FactEntity? = null
+
         fun bind(state: SavedFactsState.Item) {
+            fact = state.item
             binding.factText.text = state.item.fact
 
             binding.root.setOnLongClickListener {

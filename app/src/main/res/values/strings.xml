@@ -9,4 +9,5 @@
     <string name="remote_error_retry_button">retry</string>
     <string name="saved_facts_empty_msg">You have not saved any facts yet.</string>
     <string name="clipboard_msg">Copied to clipboard!</string>
+    <string name="saved_facts_delete">Delete</string>
 </resources>
