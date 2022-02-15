@@ -2,8 +2,8 @@ package com.dev.monk.dogfacts.di
 
 import android.content.Context
 import androidx.room.Room
-import com.dev.monk.dogfacts.usecase.repositories.local.FactsDb
-import com.dev.monk.dogfacts.usecase.repositories.remote.DogsApi
+import com.dev.monk.dogfacts.domain.repositories.local.FactsDb
+import com.dev.monk.dogfacts.domain.repositories.remote.DogsApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit
 private const val URL = "https://dog-api.kinduff.com/api/"
 
 val remoteModule = module {
-
     single { dogFactsService }
 }
 
@@ -41,8 +40,5 @@ private val buildRetrofit = Retrofit.Builder()
 private val dogFactsService = buildRetrofit.create(DogsApi::class.java)
 
 private fun getDb(context: Context) =
-    Room.databaseBuilder(
-        context,
-        FactsDb::class.java,
-        "todo-list.db"
-    ).build()
+    Room.databaseBuilder(context, FactsDb::class.java, "saved-facts.db")
+        .build()

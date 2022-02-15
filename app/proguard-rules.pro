@@ -16,4 +16,4 @@
 #   public *;
 #}
 
--keepclassmembernames class com.dev.monk.dogfacts.models.ApiResponse { *; }
+-keepclassmembernames class com.dev.monk.dogfacts.domain.models.ApiResponse { *; }

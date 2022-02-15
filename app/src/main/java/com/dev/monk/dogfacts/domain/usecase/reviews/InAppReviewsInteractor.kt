@@ -1,13 +1,11 @@
-package com.dev.monk.dogfacts.usecase.reviews
+package com.dev.monk.dogfacts.domain.usecase.reviews
 
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.launch
 
-class InAppReviews(
+class InAppReviewsInteractor(
     private val reviewManager: ReviewManager
 ) {
 
@@ -27,10 +25,7 @@ class InAppReviews(
         reviewFlow.addOnCompleteListener { task ->
             if (task.isSuccessful) return@addOnCompleteListener
             val result = task.result
-
-            GlobalScope.launch {
-                _reviewInfo.emit(reviewManager to result)
-            }
+                _reviewInfo.tryEmit(reviewManager to result)
         }
     }
 }

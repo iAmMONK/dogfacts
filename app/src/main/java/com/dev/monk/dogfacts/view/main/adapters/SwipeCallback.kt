@@ -6,7 +6,7 @@ import androidx.core.view.marginEnd
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.dev.monk.dogfacts.R
-import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
+import com.dev.monk.dogfacts.domain.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.utils.ext.getString
 import kotlin.math.abs
 import kotlin.math.min
@@ -21,7 +21,6 @@ class SwipeCallback(
     private val textPaint = Paint().apply {
         isAntiAlias = true
         color = Color.WHITE
-        textSize = 30f
     }
 
     private val backGroundPaint = Paint().apply {

@@ -1,4 +1,4 @@
-package com.dev.monk.dogfacts.usecase.repositories.local.entities
+package com.dev.monk.dogfacts.domain.repositories.local.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

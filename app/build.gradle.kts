@@ -11,8 +11,8 @@ android {
         applicationId = "com.dev.monk.dogfacts"
         minSdk = AndroidSdk.min
         targetSdk = AndroidSdk.target
-        versionCode = 5
-        versionName = "1.0.1"
+        versionCode = 6
+        versionName = "1.1.0"
         multiDexEnabled = true
 
         javaCompileOptions {
@@ -60,7 +60,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 

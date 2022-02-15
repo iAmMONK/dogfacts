@@ -1,4 +1,4 @@
-package com.dev.monk.dogfacts.usecase.ads
+package com.dev.monk.dogfacts.domain.usecase.ads
 
 import android.content.Context
 import com.dev.monk.dogfacts.R
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
-class AdsManager(
+class AdsInteractor(
     private val context: Context,
     private val adRequest: AdRequest
 ) {
@@ -30,9 +30,7 @@ class AdsManager(
             context, context.getString(R.string.admob_ad_unit_id), adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(ad: InterstitialAd) {
-                    GlobalScope.launch {
-                        _interAdFlow.emit(ad)
-                    }
+                    _interAdFlow.tryEmit(ad)
                 }
             }
         )

@@ -1,10 +1,10 @@
 package com.dev.monk.dogfacts.di
 
-import com.dev.monk.dogfacts.usecase.ads.AdsManager
-import com.dev.monk.dogfacts.usecase.facts.FactsManager
-import com.dev.monk.dogfacts.usecase.facts.FactsSource
-import com.dev.monk.dogfacts.usecase.repositories.remote.DogsApiRepo
-import com.dev.monk.dogfacts.usecase.reviews.InAppReviews
+import com.dev.monk.dogfacts.domain.usecase.facts.FactsRepository
+import com.dev.monk.dogfacts.domain.usecase.ads.AdsInteractor
+import com.dev.monk.dogfacts.domain.repositories.remote.FactsSource
+import com.dev.monk.dogfacts.domain.repositories.remote.DogsApiRepo
+import com.dev.monk.dogfacts.domain.usecase.reviews.InAppReviewsInteractor
 import com.dev.monk.dogfacts.view.main.MainActivityViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.play.core.review.ReviewManagerFactory
@@ -20,13 +20,13 @@ val appModule = module {
 
     single { DogsApiRepo(get()) }
 
-    single { FactsManager(get(), get()) }
+    single { FactsRepository(get(), get()) }
 
     factory { FactsSource(get()) }
 
-    single { AdsManager(get(), adRequest) }
+    single { AdsInteractor(get(), adRequest) }
 
-    single { InAppReviews(ReviewManagerFactory.create(get())) }
+    single { InAppReviewsInteractor(ReviewManagerFactory.create(get())) }
 }
 
 private val adRequest = AdRequest.Builder().build()

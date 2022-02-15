@@ -1,7 +1,7 @@
-package com.dev.monk.dogfacts.usecase.repositories.local
+package com.dev.monk.dogfacts.domain.repositories.local
 
 import androidx.room.*
-import com.dev.monk.dogfacts.usecase.repositories.local.entities.FactEntity
+import com.dev.monk.dogfacts.domain.repositories.local.entities.FactEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
