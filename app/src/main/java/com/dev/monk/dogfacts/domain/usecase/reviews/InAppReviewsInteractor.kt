@@ -25,7 +25,7 @@ class InAppReviewsInteractor(
         reviewFlow.addOnCompleteListener { task ->
             if (task.isSuccessful) return@addOnCompleteListener
             val result = task.result
-                _reviewInfo.tryEmit(reviewManager to result)
+            _reviewInfo.tryEmit(reviewManager to result)
         }
     }
 }

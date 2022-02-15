@@ -3,10 +3,10 @@ package com.dev.monk.dogfacts.domain.usecase.facts
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.dev.monk.dogfacts.domain.models.SavedFactsState
-import com.dev.monk.dogfacts.domain.repositories.remote.FactsSource
 import com.dev.monk.dogfacts.domain.repositories.local.FactsDao
 import com.dev.monk.dogfacts.domain.repositories.local.entities.FactEntity
 import com.dev.monk.dogfacts.domain.repositories.remote.DogsApi
+import com.dev.monk.dogfacts.domain.repositories.remote.FactsSource
 import kotlinx.coroutines.flow.map
 
 class FactsRepository(

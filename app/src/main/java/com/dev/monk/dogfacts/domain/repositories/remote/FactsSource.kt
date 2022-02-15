@@ -2,8 +2,6 @@ package com.dev.monk.dogfacts.domain.repositories.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.dev.monk.dogfacts.domain.repositories.remote.DogsApi
-import com.dev.monk.dogfacts.domain.repositories.remote.DogsApiRepo
 import java.lang.Exception
 
 class FactsSource(private val repo: DogsApi) : PagingSource<Int, String>() {

@@ -4,16 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.paging.cachedIn
-import com.dev.monk.dogfacts.domain.usecase.facts.FactsRepository
-import com.dev.monk.dogfacts.domain.models.SavedFactsState
-import com.dev.monk.dogfacts.domain.usecase.ads.AdsInteractor
 import com.dev.monk.dogfacts.domain.repositories.local.entities.FactEntity
+import com.dev.monk.dogfacts.domain.usecase.ads.AdsInteractor
+import com.dev.monk.dogfacts.domain.usecase.facts.FactsRepository
 import com.dev.monk.dogfacts.domain.usecase.reviews.InAppReviewsInteractor
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel(

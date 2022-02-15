@@ -1,9 +1,9 @@
 package com.dev.monk.dogfacts.di
 
-import com.dev.monk.dogfacts.domain.usecase.facts.FactsRepository
-import com.dev.monk.dogfacts.domain.usecase.ads.AdsInteractor
-import com.dev.monk.dogfacts.domain.repositories.remote.FactsSource
 import com.dev.monk.dogfacts.domain.repositories.remote.DogsApiRepo
+import com.dev.monk.dogfacts.domain.repositories.remote.FactsSource
+import com.dev.monk.dogfacts.domain.usecase.ads.AdsInteractor
+import com.dev.monk.dogfacts.domain.usecase.facts.FactsRepository
 import com.dev.monk.dogfacts.domain.usecase.reviews.InAppReviewsInteractor
 import com.dev.monk.dogfacts.view.main.MainActivityViewModel
 import com.google.android.gms.ads.AdRequest
